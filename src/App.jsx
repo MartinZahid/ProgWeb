@@ -1,10 +1,9 @@
 import { useState } from 'react';
 import './App.css';
-import ObtencionUsuarios from './ObtencionUsuarios';
 import CargarTabla from './CargarTabla';
 import guardarUsuario from './Componentes/usuarios/guardarUsuario';
-import usuario from './Componentes/usuarios/index';
-
+import UsuarioIndex from './Componentes/usuarios/index';
+import ObtencionUsuarios from './ObtencionUsuarios';
 function App() {
   const [datos, setDatos] = useState({
     email: '',
@@ -75,7 +74,8 @@ function App() {
           <button type="submit" className="btn-login">Entrar</button>
         </form>
       </section>
-
+      <UsuarioIndex /> {/* <--- Aquí se muestra el componente principal de usuarios */}
+<ObtencionUsuarios /> {/* <--- Si no agregas esto, no verás la lista */}
       {/* La tabla se muestra abajo, fuera del formulario para evitar conflictos */}
       <hr style={{ margin: '40px 0' }} />
       

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { usuariopost } from '../../utilidades/Redux/actions/usuarioPost';
-function Usuario() {
+function UsuarioIndex() {
     const [verFormulario, setVerFormulario] = useState(false);
 
     return (
@@ -26,3 +26,4 @@ function Usuario() {
         </div>
     );
 }
+export default UsuarioIndex;
