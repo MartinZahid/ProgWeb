@@ -28,3 +28,4 @@ const usuariosSlice = createSlice({
   }
 });
     export const usuariosReducer = usuariosSlice.reducer;
+    export default usuariosReducer

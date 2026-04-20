@@ -17,8 +17,7 @@ function guardarUsuario() {
 
         <label htmlFor="contraseña">contraseña</label>
         <input type= "text" name = "contraseña" id = "contraseña" />
-        <button onClick={guardarUsuario}>Guardar</button>
-
+       <button onClick={guardarUsuario}>Guardar</button>
         </>
     )
 }
