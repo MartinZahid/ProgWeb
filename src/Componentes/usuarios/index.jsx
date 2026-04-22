@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { usuariopost } from '../../utilidades/Redux/actions/usuarioPost';
+import GuardarUsuario from './guardarUsuario'; // Importamos el componente corregido
+import ObtencionUsuarios from '../../ObtencionUsuarios';
+
 function UsuarioIndex() {
     const [verFormulario, setVerFormulario] = useState(false);
 
@@ -9,18 +10,19 @@ function UsuarioIndex() {
             {verFormulario ? (
                 <>
                     <h1>Registrar Nuevo Usuario</h1>
-                    <FormularioRegistro alFinalizar={() => setVerFormulario(false)} />
+       
+                    <GuardarUsuario alFinalizar={() => setVerFormulario(false)} />
                     <br />
                     <button onClick={() => setVerFormulario(false)}>Cancelar y Volver</button>
                 </>
             ) : (
                 <>
-                    <h1>Tabla de Usuarios</h1>
+                    <h1>Gestión de Usuarios</h1>
                     <button onClick={() => setVerFormulario(true)}>
-                        Crear Nuevo Usuario
+                        Crear Nuevo Usuario (POST)
                     </button>
                     <hr />
-                    <ObtencionUsuarios />
+                    <ObtencionUsuarios /> 
                 </>
             )}
         </div>

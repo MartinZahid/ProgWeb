@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import './App.css';
 import CargarTabla from './CargarTabla';
-import guardarUsuario from './Componentes/usuarios/guardarUsuario';
+import GuardarUsuario from './Componentes/usuarios/guardarUsuario';
 import UsuarioIndex from './Componentes/usuarios/index';
-import ObtencionUsuarios from './ObtencionUsuarios';
+
 function App() {
   const [datos, setDatos] = useState({
     email: '',
@@ -80,6 +80,8 @@ function App() {
       <hr style={{ margin: '40px 0' }} />
       
       <CargarTabla />
+      <GuardarUsuario />
+      
     </div>
   );
 }
