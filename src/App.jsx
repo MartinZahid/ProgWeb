@@ -80,7 +80,7 @@ function App() {
       <hr style={{ margin: '40px 0' }} />
       
       <CargarTabla />
-      <GuardarUsuario />
+<GuardarUsuario />
       
     </div>
   );
