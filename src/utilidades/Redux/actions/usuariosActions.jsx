@@ -1,21 +1,37 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
+//listar
 export const listarUsuarios = createAsyncThunk(
-    'usuarios/listar', async (data, { rejectWithValue }) => {
-        const response =axios.get('https://jsonplaceholder.typicode.com/users')
-         response.data
+    'usuarios/listar', async (_, { rejectWithValue }) => {
+        try {
+            const response = await axios.get('http://38.22.229.186:2121/USUARIOS/');
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data || "Error al obtener usuarios");
+        }
     }
 );
+
+//put
 export const modificarUsuario = createAsyncThunk(
     'usuarios/modificar', async (data, { rejectWithValue }) => {
-        const response =axios.put('http://38.22.229.186:2121/USUARIOS/'+data.usuarioiD, data)
-         response.data
+        try {
+            const response = await axios.put('http://38.22.229.186:2121/USUARIOS/' + data.usuarioId, data);
+            return response.data;
+        } catch (error) {
+            return rejectWithValue(error.response?.data || "Error al modificar");
+        }
     }
 );
-    export const eliminarUsuario = createAsyncThunk(
-        'usuarios/eliminar', async (id, { rejectWithValue }) => {
-            const response =axios.delete('http://38.22.229.186:2121/USUARIOS/'+usuarioiD)
-             response.data
+
+//eliminar
+export const eliminarUsuario = createAsyncThunk(
+    'usuarios/eliminar', async (id, { rejectWithValue }) => {
+        try {
+            await axios.delete('http://38.22.229.186:2121/USUARIOS/' + id);
+            return id;
+        } catch (error) {
+            return rejectWithValue(error.response?.data || "Error al eliminar");
         }
-    );
+    }
+);

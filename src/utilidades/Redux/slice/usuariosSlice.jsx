@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { listarUsuarios } from '../actions/usuariosActions';
+import { listarUsuarios, modificarUsuario, eliminarUsuario } from '../actions/usuariosActions';
+import { usuariopost } from '../actions/usuarioPost';
+
 const initialState = {
     usuarios: [],
     usuario : {},
@@ -7,13 +9,13 @@ const initialState = {
     error: null
 };
 
-
 const usuariosSlice = createSlice({
   name: "usuarios",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
+      // Listar Usuarios
       .addCase(listarUsuarios.pending, (state) => {
         state.loading = true;
       })
@@ -25,7 +27,9 @@ const usuariosSlice = createSlice({
         state.loading = false;
         state.error = action.payload;
       })
-        .addCase(modificarUsuario.pending, (state) => {
+      
+      //Modificar Usuario
+      .addCase(modificarUsuario.pending, (state) => {
         state.loading = true;
       })
       .addCase(modificarUsuario.fulfilled, (state, action) => {
@@ -38,27 +42,29 @@ const usuariosSlice = createSlice({
       .addCase(modificarUsuario.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-        
       })
       
+      //  Eliminar Usuario
       .addCase(eliminarUsuario.pending, (state) => {
         state.loading = true;
       })
       .addCase(eliminarUsuario.fulfilled, (state, action) => {
         state.loading = false;
-        state.usuarios = state.usuarios.filter(u => u.usuarioId !== action.payload.usuarioId);
+        // Filtramos la lista local para remover el usuario eliminado
+        state.usuarios = state.usuarios.filter(u => u.usuarioId !== action.payload);
       })
       .addCase(eliminarUsuario.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
-      
       })
+
+      // (POST)
       .addCase(usuariopost.pending, (state) => {
         state.loading = true;
       })
       .addCase(usuariopost.fulfilled, (state, action) => {
         state.loading = false;
-        state.usuarios.push(action.payload);
+        if (action.payload) state.usuarios.push(action.payload);
       })
       .addCase(usuariopost.rejected, (state, action) => {
         state.loading = false;
@@ -66,4 +72,5 @@ const usuariosSlice = createSlice({
       });
   }
 });
-    export const usuariosReducer = usuariosSlice.reducer;
+
+export const usuariosReducer = usuariosSlice.reducer;

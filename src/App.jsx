@@ -81,6 +81,7 @@ function App() {
       
       <CargarTabla />
 <GuardarUsuario />
+<ObtencionUsuarios />
       
     </div>
   );

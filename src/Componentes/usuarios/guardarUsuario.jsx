@@ -2,7 +2,7 @@
     import { useDispatch } from 'react-redux';
     import { usuariopost } from '../../utilidades/Redux/actions/usuarioPost';
 
-    function GuardarUsuario({ alFinalizar }) {
+    function GuardarUsuario({  }) {
         const dispatch = useDispatch();
         const [form, setForm] = useState({
             usuarioId: '',
@@ -24,7 +24,15 @@
                 .unwrap()
                 .then(() => {
                     alert("Usuario guardado con éxito");
-                    alFinalizar(); 
+                    setForm({
+                        usuarioId: '',
+                        nombre: '',
+                        apellidoPaterno: '',
+                        apellidoMaterno: '',
+                        nombreUsuario: '',
+                        contraseña: '',
+                        habilitado: ''
+                    });
                 })
                 .catch((error) => {
                     alert("Error al guardar: " + error);
